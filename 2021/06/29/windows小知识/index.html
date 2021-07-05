@@ -28,11 +28,14 @@
 <meta property="og:site_name" content="有衡">
 <meta property="og:description" content="本文介绍在使用windows时所遇到的问题和解决办法。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.alicdn.com/imgextra/i2/2015108109/O1CN01B2k3Zs29lyMvLHy5Z_!!2015108109.png">
+<meta property="og:image" content="https://img.alicdn.com/imgextra/i1/2015108109/O1CN01KMjIIn29lyN2lwWzY_!!2015108109.png">
 <meta property="article:published_time" content="2021-06-29T17:26:04.000Z">
-<meta property="article:modified_time" content="2021-06-30T11:00:15.912Z">
+<meta property="article:modified_time" content="2021-07-05T02:02:41.784Z">
 <meta property="article:author" content="有衡">
 <meta property="article:tag" content="系统">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.alicdn.com/imgextra/i2/2015108109/O1CN01B2k3Zs29lyMvLHy5Z_!!2015108109.png">
 
 <link rel="canonical" href="http://example.com/2021/06/29/windows%E5%B0%8F%E7%9F%A5%E8%AF%86/">
 
@@ -193,7 +196,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-30 11:00:15" itemprop="dateModified" datetime="2021-06-30T11:00:15+00:00">2021-06-30</time>
+                <time title="修改时间：2021-07-05 02:02:41" itemprop="dateModified" datetime="2021-07-05T02:02:41+00:00">2021-07-05</time>
               </span>
 
           
@@ -216,6 +219,24 @@
       
         <p>本文介绍在使用<code>windows</code>时所遇到的问题和解决办法。</p>
 <span id="more"></span>
+
+<h3 id="windows-中的回车换行"><a href="#windows-中的回车换行" class="headerlink" title="windows 中的回车换行"></a>windows 中的回车换行</h3><p>在 windows 中的回车换行是<code>\r\n</code></p>
+<p>如果只用<code>\r</code>可能会出现一些 bug</p>
+<p>比如：我用 PHP 代码生成一个文件 1.bat，在文件中写入内容，其中包含了<code>\r</code>，生成的文件就会出现问题，问题如下：</p>
+<p><img src="https://img.alicdn.com/imgextra/i2/2015108109/O1CN01B2k3Zs29lyMvLHy5Z_!!2015108109.png"></p>
+<p>异常的文件是无法执行的</p>
+<p>在 windows 下需要注意这个问题</p>
+<h3 id="win10-开启热点手机无法连接网络"><a href="#win10-开启热点手机无法连接网络" class="headerlink" title="win10 开启热点手机无法连接网络"></a>win10 开启热点手机无法连接网络</h3><p>因为我使用了 Hyper-V 虚拟机，虚拟机设置连接网络时需要以太网设置共享网络给虚拟机，所以只需要把网络共享给 wifi 的连接即可</p>
+<p><img src="https://img.alicdn.com/imgextra/i1/2015108109/O1CN01KMjIIn29lyN2lwWzY_!!2015108109.png"></p>
+<h3 id="win10虚拟wifi热点"><a href="#win10虚拟wifi热点" class="headerlink" title="win10虚拟wifi热点"></a>win10虚拟wifi热点</h3><p>一般只有在笔记本电脑上才有热点分享，我们可以开启一个虚拟热点使用</p>
+<p><code>ssid</code>是热点的名字，key是热点的密码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netsh wlan set hostednetwork mode=allow ssid=JayFan key=12345678</span><br><span class="line">netsh wlan start hostednetwork</span><br></pre></td></tr></table></figure>
+
+<p>执行命令后在设置-&gt;状态-&gt;更改适配器里面会出现一个新的本地连接名字就是<code>JayFan</code></p>
+<p>点击以太网右键属性-&gt;共享</p>
+<p>勾选允许其他网络用户通过此计算机的internet连接来连接，下拉框选中刚刚创建的网络</p>
+<p>然后手机和平板就可以连接这个热点了</p>
+
     </div>
 
     
@@ -345,6 +366,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows-%E4%B8%AD%E7%9A%84%E5%9B%9E%E8%BD%A6%E6%8D%A2%E8%A1%8C"><span class="nav-number">1.</span> <span class="nav-text">windows 中的回车换行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#win10-%E5%BC%80%E5%90%AF%E7%83%AD%E7%82%B9%E6%89%8B%E6%9C%BA%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C"><span class="nav-number">2.</span> <span class="nav-text">win10 开启热点手机无法连接网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#win10%E8%99%9A%E6%8B%9Fwifi%E7%83%AD%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">win10虚拟wifi热点</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -360,14 +382,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

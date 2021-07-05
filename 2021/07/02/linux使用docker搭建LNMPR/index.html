@@ -21,20 +21,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文介绍新手使用MacBook的一些问题和解决办法。">
+  <meta name="description" content="本文介绍在linux系统中使用docker镜像搭建LNMPR环境 LNMPR是linux+nginx+mysql+php+redis环境">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MacBook的使用">
-<meta property="og:url" content="http://example.com/2021/06/29/MacBook%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="linux使用docker搭建LNMPR">
+<meta property="og:url" content="http://example.com/2021/07/02/linux%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BALNMPR/index.html">
 <meta property="og:site_name" content="有衡">
-<meta property="og:description" content="本文介绍新手使用MacBook的一些问题和解决办法。">
+<meta property="og:description" content="本文介绍在linux系统中使用docker镜像搭建LNMPR环境 LNMPR是linux+nginx+mysql+php+redis环境">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-06-29T17:27:47.000Z">
+<meta property="article:published_time" content="2021-07-02T11:43:50.000Z">
 <meta property="article:modified_time" content="2021-07-05T02:02:41.784Z">
 <meta property="article:author" content="有衡">
-<meta property="article:tag" content="系统">
+<meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/06/29/MacBook%E7%9A%84%E4%BD%BF%E7%94%A8/">
+<link rel="canonical" href="http://example.com/2021/07/02/linux%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BALNMPR/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>MacBook的使用 | 有衡</title>
+  <title>linux使用docker搭建LNMPR | 有衡</title>
   
 
 
@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/29/MacBook%E7%9A%84%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/02/linux%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BALNMPR/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -176,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          MacBook的使用
+          linux使用docker搭建LNMPR
         </h1>
 
         <div class="post-meta">
@@ -186,7 +186,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-06-29 17:27:47" itemprop="dateCreated datePublished" datetime="2021-06-29T17:27:47+00:00">2021-06-29</time>
+              <time title="创建时间：2021-07-02 11:43:50" itemprop="dateCreated datePublished" datetime="2021-07-02T11:43:50+00:00">2021-07-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -214,8 +214,107 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>本文介绍新手使用<code>MacBook</code>的一些问题和解决办法。</p>
+        <p>本文介绍在linux系统中使用<code>docker</code>镜像搭建<code>LNMPR</code>环境</p>
+<p><code>LNMPR</code>是<code>linux+nginx+mysql+php+redis</code>环境</p>
 <span id="more"></span>
+
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>这篇博客需要懂一些<code>docker</code>命令，如果不会可以先去<a target="_blank" rel="noopener" href="https://www.docker.com/">docker官网</a>看看</p>
+<p>或者可以看另一篇博客，先对<code>docker</code>熟悉一下</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.docker.com/">docker官网</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://hub.docker.com/search?offering=community&operating_system=linux&q=&type=edition">docker镜像</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.docker.com/get-docker/">docker文档</a></p>
+</li>
+</ul>
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><ol>
+<li>安装<code>yum-utils</code>包</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y yum-utils</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>安装<code>docker</code>引擎</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>启动docker</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull php</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装MySql"><a href="#安装MySql" class="headerlink" title="安装MySql"></a>安装MySql</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装phpmyadmin"><a href="#安装phpmyadmin" class="headerlink" title="安装phpmyadmin"></a>安装phpmyadmin</h2><p><code>phpmyadmin</code>是一个<code>mysql</code>可视化管理界面，需要和mysql配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull phpmyadmin</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Redis"><a href="#安装Redis" class="headerlink" title="安装Redis"></a>安装Redis</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull redis</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装portainer-ce"><a href="#安装portainer-ce" class="headerlink" title="安装portainer-ce"></a>安装portainer-ce</h2><p><code>portainer-ce</code>是<code>docker</code>的一个可视化管理界面，但是是全英文的(总是要比命令行友好些)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull portainer/portainer-ce</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装filebrowser"><a href="#安装filebrowser" class="headerlink" title="安装filebrowser"></a>安装filebrowser</h2><p><code>filebrowser</code>是一个文件管理系统可视化界面，可以用来管理项目的上传下载等，不需要连接再去上传</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull filebrowser/filebrowser</span><br></pre></td></tr></table></figure>
+
+<h2 id="phpmyadmin连接mysql"><a href="#phpmyadmin连接mysql" class="headerlink" title="phpmyadmin连接mysql"></a>phpmyadmin连接mysql</h2><p>因为<code>docker</code>容器都是独立的，所以安装后并不能直接使用，需要配置才行</p>
+<ol>
+<li>创建Mysql容器</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3006 -e MYSQL_ROOT_PASSWORD=123456 --name mysql mysql</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-d 是后台运行</li>
+<li>-p 是设置端口</li>
+<li>3306:3306 是内外的映射端口 前面的是外部 后面的是内部</li>
+<li>123456 是mysql的登陆密码</li>
+<li>第一个 Mysql 是给容易取的名字</li>
+<li>第二个 mysql 是mysql镜像</li>
+</ul>
+<ol start="2">
+<li>查看是否创建成功</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>查看镜像</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>第一种方式</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 6062:80 -e PMA_HOST=172.17.0.3 -e PMA_PORT=3306 --name phpmyadmin 92</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>6062 是外部的端口，自己想用哪个自己改</li>
+<li>172.17.0.3 是mysql容器的ip地址<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inpspect mysql </span><br></pre></td></tr></table></figure></li>
+<li>启动mysql容器后可以以上命令查看 mysql是之前启动容易时候自己设置的名字</li>
+<li>phpmyadmin 是 phpmyadmin的容器名称，自己设置就可以</li>
+<li>92 是 phpmyadmin 的images_id 使用命令 docker images可以看到</li>
+</ul>
+<ol start="5">
+<li>第二种方式</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 6062:80 --link mysql:db --name phpmyadmin 92</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这种方式不需要每次都固定某个容器的ip</li>
+<li>6062 是外部的端口，自己想用哪个自己改</li>
+<li>mysql 是 mysql 容器的名称(自己取的)</li>
+<li>phpmyadmin 是 phpmyadmin的容器名称，自己设置就可以</li>
+<li>92 是 phpmyadmin 的images_id 使用命令 docker images可以看到</li>
+</ul>
+<ol start="6">
+<li>访问</li>
+</ol>
+<p>在浏览器中访问你的ip+端口就可以看到phpmyadmin的登陆页面，账号密码是<code>root</code>和<code>123456</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ip/6062</span><br></pre></td></tr></table></figure>
+
+<h2 id="Nginx和PHP的配置"><a href="#Nginx和PHP的配置" class="headerlink" title="Nginx和PHP的配置"></a>Nginx和PHP的配置</h2><h2 id="PHP和Redis的配置"><a href="#PHP和Redis的配置" class="headerlink" title="PHP和Redis的配置"></a>PHP和Redis的配置</h2><h2 id="filebrowser文件管理系统的配置"><a href="#filebrowser文件管理系统的配置" class="headerlink" title="filebrowser文件管理系统的配置"></a>filebrowser文件管理系统的配置</h2>
     </div>
 
     
@@ -260,7 +359,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://example.com/2021/06/29/MacBook%E7%9A%84%E4%BD%BF%E7%94%A8/" title="MacBook的使用">http://example.com/2021/06/29/MacBook的使用/</a>
+    <a href="http://example.com/2021/07/02/linux%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BALNMPR/" title="linux使用docker搭建LNMPR">http://example.com/2021/07/02/linux使用docker搭建LNMPR/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -271,7 +370,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%B3%BB%E7%BB%9F/" rel="tag"># 系统</a>
+              <a href="/tags/docker/" rel="tag"># docker</a>
           </div>
 
         
@@ -280,12 +379,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/06/29/linux%E5%B0%8F%E7%9F%A5%E8%AF%86/" rel="prev" title="linux小知识">
-      <i class="fa fa-chevron-left"></i> linux小知识
+    <a href="/2021/06/29/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98/" rel="prev" title="支付宝支付">
+      <i class="fa fa-chevron-left"></i> 支付宝支付
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/06/29/PHP%E5%B0%8F%E7%9F%A5%E8%AF%86/" rel="next" title="PHP小知识">
-      PHP小知识 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/07/02/docker/" rel="next" title="docker">
+      docker <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -345,6 +444,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85docker"><span class="nav-number">2.</span> <span class="nav-text">安装docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Nginx"><span class="nav-number">3.</span> <span class="nav-text">安装Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85PHP"><span class="nav-number">4.</span> <span class="nav-text">安装PHP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85MySql"><span class="nav-number">5.</span> <span class="nav-text">安装MySql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85phpmyadmin"><span class="nav-number">6.</span> <span class="nav-text">安装phpmyadmin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Redis"><span class="nav-number">7.</span> <span class="nav-text">安装Redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85portainer-ce"><span class="nav-number">8.</span> <span class="nav-text">安装portainer-ce</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85filebrowser"><span class="nav-number">9.</span> <span class="nav-text">安装filebrowser</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#phpmyadmin%E8%BF%9E%E6%8E%A5mysql"><span class="nav-number">10.</span> <span class="nav-text">phpmyadmin连接mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx%E5%92%8CPHP%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">11.</span> <span class="nav-text">Nginx和PHP的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP%E5%92%8CRedis%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">12.</span> <span class="nav-text">PHP和Redis的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#filebrowser%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">13.</span> <span class="nav-text">filebrowser文件管理系统的配置</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
